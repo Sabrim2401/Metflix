@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Metflix {
-
+//modificacion para practicar 
     public List<Pelicula> peliculas = new ArrayList<>();
     public List<Serie> series = new ArrayList<>();
     
