@@ -1,75 +1,114 @@
-
+import java.util.*;
 
 public class App {
+    public static Scanner Teclado = new Scanner(System.in);
+
     public static void main(String[] args) throws Exception {
-        //A partir de Metflix, buscar la temporada 5 episodio 1 de la serie
-        //How I met your mother y 
-        //reproducir el episodio.
+        // A partir de Metflix, buscar la temporada 5 episodio 1 de la serie
+        // How I met your mother y
+        // reproducir el episodio.
 
         Metflix miMetflix = new Metflix();
 
         System.out.println("Inicializando catalogo de Metflix");
 
-        miMetflix.inicializarCatalogo();//Estoy llamando al metodo que crea las pelis y series.
+        miMetflix.inicializarCatalogo();// Estoy llamando al metodo que crea las pelis y series.
 
         Serie serieBuscada = miMetflix.buscarSerie("How I met your mother");
 
-        Temporada temporada = serieBuscada.buscarTemporada(5);
+        if (serieBuscada == null) {
+            System.out.println("No se encontro la serie");
+            return;
+        }
+        System.out.println("Ingrese nro temporada: ");
 
-        Episodio episodio = temporada.buscarEpisodio(1);
+        int nroTemporada = Teclado.nextInt();
+        Teclado.nextLine();
 
-        episodio.reproducir();
+        Temporada temporada = serieBuscada.buscarTemporada(nroTemporada);
 
-        // creado por Sabri <3
+        System.out.println("Ingrese nro episodio: ");
+        int nroEpisodio = Teclado.nextInt();
+        Teclado.nextLine();
 
-        miMetflix = new Metflix();
-
-        System.out.println("Inicializando por segunda vez el catalogo de Metflix");
-
-        miMetflix.inicializarCatalogo();
-
-        serieBuscada = miMetflix.buscarSerie("New Amsterdam");
-
-        temporada = serieBuscada.buscarTemporada(1);
-
-        episodio = temporada.buscarEpisodio(1);
+        Episodio episodio = temporada.buscarEpisodio(nroEpisodio);
 
         episodio.reproducir();
 
-        //creado por chabri
-        
-        miMetflix =new Metflix();
+        // ahora quiero imprimir un cartel que diga:
+        // que lo que se acaba de reproducir arriba es un
+        // websodio o un episodio.
+        // pero en un print aparte.
+        if (episodio instanceof Websodio) {
+            System.out.println("El episodio era un websodio");
+        } else {
+            System.out.println("Es un episodio");
+        }
 
-        System.out.println("Inicializando por tercera vez el catalogo de Metflix");
+        // Ahora quiero que si es un Websodio, imprima el Link del websodio.
+        if (episodio instanceof Websodio) {
+            // Castear: es el proceso donde "desenmascaramos" a una variable.
+            Websodio websodio = (Websodio) episodio;
+            System.out.println("El link del websodio es: " + websodio.link);
+        }
 
-        miMetflix.inicializarCatalogo();
-
-        serieBuscada = miMetflix.buscarSerie("Juego de Tronos");
-
-        temporada = serieBuscada.buscarTemporada(2);
-
-        episodio = temporada.buscarEpisodio(10);
-
-        episodio.reproducir();
-
-        //BUSCAR PELICULA
-
-        miMetflix = new Metflix();
-
-        System.out.println("Inicializando por primera vez el catalogo de Peliculas de Metflix");
-
-        miMetflix.inicializarCatalogo();
-
-        Pelicula pelicula = miMetflix.buscarPelicula("Titanic");
-
-        pelicula.reproducirPeli();
-
-        
-
-
-
-
-
+        /*
+         * creado por Sabri <3
+         * 
+         * miMetflix = new Metflix();
+         * 
+         * System.out.println("Inicializando por segunda vez el catalogo de Metflix");
+         * 
+         * miMetflix.inicializarCatalogo();
+         * 
+         * serieBuscada = miMetflix.buscarSerie("New Amsterdam");
+         * 
+         * temporada = serieBuscada.buscarTemporada(1);
+         * 
+         * episodio = temporada.buscarEpisodio(1);
+         * 
+         * episodio.reproducir();
+         * 
+         * // ahora quiero imprimir un cartel que diga: // que lo que se acaba de
+         * reproducir arriba es un // websodio o un episodio. // pero en un print
+         * aparte. if (episodio instanceof Websodio) {
+         * System.out.println("El episodio era un websodio"); } else {
+         * System.out.println("Es un episodio"); }
+         * 
+         * // Ahora quiero que si es un Websodio, imprima el Link del websodio. if
+         * (episodio instanceof Websodio) { // Castear: es el proceso donde
+         * "desenmascaramos" a una variable. Websodio websodio = (Websodio) episodio;
+         * System.out.println("El link del websodio es: " + websodio.link); }
+         * 
+         * /* creado por chabri
+         * 
+         * miMetflix = new Metflix();
+         * 
+         * System.out.println("Inicializando por tercera vez el catalogo de Metflix");
+         * 
+         * miMetflix.inicializarCatalogo();
+         * 
+         * serieBuscada = miMetflix.buscarSerie("Juego de Tronos");
+         * 
+         * temporada = serieBuscada.buscarTemporada(2);
+         * 
+         * episodio = temporada.buscarEpisodio(10);
+         * 
+         * episodio.reproducir();
+         * 
+         * // BUSCAR PELICULA
+         * 
+         * miMetflix = new Metflix();
+         * 
+         * System.out.
+         * println("Inicializando por primera vez el catalogo de Peliculas de Metflix");
+         * 
+         * miMetflix.inicializarCatalogo();
+         * 
+         * Pelicula pelicula = miMetflix.buscarPelicula("Titanic");
+         * 
+         * pelicula.reproducirPeli();
+         */
 
     }
 }
