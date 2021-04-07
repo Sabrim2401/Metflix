@@ -38,7 +38,7 @@ public class App {
         // ahora quiero imprimir un cartel que diga:
         // que lo que se acaba de reproducir arriba es un
         // websodio o un episodio.
-        // pero en un print aparte.
+        // pero en un print aparte..
         if (episodio instanceof Websodio) {
             System.out.println("El episodio era un websodio");
         } else {
